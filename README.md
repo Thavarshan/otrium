@@ -40,7 +40,7 @@ An argument must be provided when running the application. This is to determine 
 
 > The generated report CSV files can be found within the `reports` directory.
 
-##### Available Reports
+#### Available Reports
 
 - `daily` - Generate 7 days turnover (excluding VAT) per day.
 - `brand` - Generate 7 days turnover per brand (excluding VAT) per day.
