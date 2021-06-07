@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+use Otrium\Core\Contracts\Kernel;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+
+$console = $app->make(Kernel::class);
+
+$console->handle(new ArgvInput(), new ConsoleOutput());

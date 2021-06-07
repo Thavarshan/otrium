@@ -1,0 +1,59 @@
+{
+    "name": "otrium/otrium",
+    "description": "Sales report generator.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thavarshan Thayananthajothy",
+            "email": "tjthavarshan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "illuminate/config": "^8.45",
+        "illuminate/container": "^8.45",
+        "illuminate/support": "^8.45",
+        "league/csv": "^9.7",
+        "monolog/monolog": "^2.2",
+        "psr/log": "^1.1",
+        "symfony/console": "^5.3",
+        "symfony/finder": "^5.3",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Otrium\\": "src/Otrium/"
+        },
+        "files": [
+            "src/Otrium/Support/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Otrium\\Tests\\": "tests/"
+        }
+    },
+    "bin": [
+        "bin/otrium"
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
