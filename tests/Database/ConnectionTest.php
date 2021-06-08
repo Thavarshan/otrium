@@ -38,7 +38,7 @@ class ConnectionTest extends TestCase
 
     protected function setUp(): void
     {
-        // $this->markTestSkipped();
+        $this->markTestSkipped();
 
         parent::setUp();
 
