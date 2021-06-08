@@ -3,6 +3,9 @@
 namespace Otrium\Console;
 
 use Otrium\Core\Contracts\Application;
+use Symfony\Component\Console\Style\OutputStyle;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class Command extends SymfonyCommand
@@ -13,6 +16,20 @@ class Command extends SymfonyCommand
      * @var \Otrium\Core\Contracts\Application
      */
     protected $app;
+
+    /**
+     * The input interface implementation.
+     *
+     * @var \Symfony\Component\Console\Input\InputInterface
+     */
+    protected $input;
+
+    /**
+     * The output interface implementation.
+     *
+     * @var \Illuminate\Console\OutputStyle
+     */
+    protected $output;
 
     /**
      * Create new instance of.
@@ -26,57 +43,5 @@ class Command extends SymfonyCommand
         parent::__construct();
 
         $this->app = $app;
-    }
-
-    /**
-     * Get the value of a command argument.
-     *
-     * @param string|null $key
-     *
-     * @return string|array|null
-     */
-    public function argument(?string $key = null)
-    {
-        if (is_null($key)) {
-            return $this->input->getArguments();
-        }
-
-        return $this->input->getArgument($key);
-    }
-
-    /**
-     * Get all of the arguments passed to the command.
-     *
-     * @return array
-     */
-    public function arguments(): array
-    {
-        return $this->argument();
-    }
-
-    /**
-     * Get the value of a command option.
-     *
-     * @param string|null $key
-     *
-     * @return mixed
-     */
-    public function option(?string $key = null)
-    {
-        if (is_null($key)) {
-            return $this->input->getOptions();
-        }
-
-        return $this->input->getOption($key);
-    }
-
-    /**
-     * Get all of the options passed to the command.
-     *
-     * @return array
-     */
-    public function options(): array
-    {
-        return $this->option();
     }
 }
