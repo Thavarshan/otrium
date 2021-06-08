@@ -261,4 +261,26 @@ class Application extends Container implements ApplicationContract
 
         return $this['config']->get($key, $default);
     }
+
+    /**
+     * Get the service providers that have been loaded.
+     *
+     * @return array
+     */
+    public function getLoadedProviders(): array
+    {
+        return $this->serviceProviders;
+    }
+
+    /**
+     * Determine if the given service provider is loaded.
+     *
+     * @param string $provider
+     *
+     * @return bool
+     */
+    public function providerIsLoaded(string $provider): bool
+    {
+        return isset($this->serviceProviders[$provider]);
+    }
 }

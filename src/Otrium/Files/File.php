@@ -44,7 +44,7 @@ abstract class File
      *
      * @return string
      */
-    protected function fileName(): string
+    public function fileName(): string
     {
         $file = "{$this->prefix}_" . date('Y-m-d-hia') . '.csv';
 

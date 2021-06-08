@@ -94,4 +94,14 @@ class Kernel implements KernelContract
     {
         $this->app['logger']->error($e->getMessage(), ['exception' => $e]);
     }
+
+    /**
+     * Get all registered commands.
+     *
+     * @return array
+     */
+    public function getCommands(): array
+    {
+        return $this->commands;
+    }
 }
