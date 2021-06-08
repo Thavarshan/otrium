@@ -27,9 +27,9 @@ interface Connection
      * @param string $statement
      * @param array  $parameters
      *
-     * @return array
+     * @return array|string
      */
-    public function readField(string $statement, array $parameters = []): array;
+    public function readField(string $statement, array $parameters = []);
 
     /**
      * Execute a read SQL statement on all fields.

@@ -46,7 +46,7 @@ class Connection implements ConnectionContract
             $this->constructDns($this->config),
             $this->config['username'],
             $this->config['password'],
-            $this->config['options'],
+            $this->config['options'] ?? [],
         );
     }
 
@@ -68,9 +68,9 @@ class Connection implements ConnectionContract
      * @param string $statement
      * @param array  $parameters
      *
-     * @return array
+     * @return array|string
      */
-    public function readField(string $statement, array $parameters = []): array
+    public function readField(string $statement, array $parameters = [])
     {
         $PDOStatement = $this->execute($statement, $parameters);
 
@@ -272,6 +272,6 @@ class Connection implements ConnectionContract
      */
     public function pdo(): PDO
     {
-        return $this->PDO;
+        return $this->pdo;
     }
 }
