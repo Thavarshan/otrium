@@ -23,7 +23,9 @@ class ConnectionTest extends TestCase
     {
         parent::setUp();
 
-        $this->markTestSkipped();
+        if ($this->isWindows()) {
+            $this->markTestSkipped('Skipping since operating system is Windows');
+        }
 
         $this->makeConnection();
 
@@ -301,8 +303,8 @@ class ConnectionTest extends TestCase
     public function makeConnection()
     {
         $config = [
-            'host' => 'localhost',
-            'port' => '3306',
+            'host' => '127.0.0.1',
+            'port' => '33306',
             'database' => 'test',
             'username' => 'root',
             'password' => '',
@@ -313,5 +315,15 @@ class ConnectionTest extends TestCase
         $connection->connect();
 
         $this->connection = $connection;
+    }
+
+    /**
+     * Determine whether the current environment is Windows based.
+     *
+     * @return bool
+     */
+    protected function isWindows(): bool
+    {
+        return \PHP_OS_FAMILY === 'Windows';
     }
 }

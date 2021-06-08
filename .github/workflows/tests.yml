@@ -3,40 +3,102 @@ name: Tests
 on:
   push:
   pull_request:
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
-  tests:
-    runs-on: ${{ matrix.os }}
+  linux_tests:
+    runs-on: ubuntu-20.04
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: test
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        php: [7.4, 8.0]
-        dependency-version: [prefer-lowest, prefer-stable]
+        php: ['7.4', '8.0']
+        stability: [prefer-lowest, prefer-stable]
+        include:
+          - php: '8.1'
+            flags: "--ignore-platform-req=php"
+            stability: prefer-stable
 
-    name: Tests P${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
+    name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, memcached
+          tools: composer:v2
+          coverage: none
 
-    - name: Cache dependencies
-      uses: actions/cache@v1
-      with:
-        path: ~/.composer/cache/files
-        key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+      - name: Load dummy data
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -h 127.0.0.1 --port 33306 -u root --default-character-set=utf8 test < tests/Fixtures/test.sql
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php }}
-        extensions: json, dom, mbstring, zip
-        coverage: none
+      - name: Install dependencies
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress ${{ matrix.flags }}
 
-    - name: Install Composer dependencies
-      run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
+      - name: Execute tests
+        continue-on-error: ${{ matrix.php > 8 }}
+        run: vendor/bin/phpunit --verbose
 
-    - name: Run Tests
-      run: php ./vendor/bin/phpunit --exclude-group database
+  windows_tests:
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        php: ['7.4', '8.0']
+        stability: [prefer-lowest, prefer-stable]
+        include:
+          - php: '8.1'
+            flags: "--ignore-platform-req=php"
+            stability: prefer-stable
+
+    name: PHP ${{ matrix.php }} - ${{ matrix.stability }} - Windows
+
+    steps:
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, gd, pdo_mysql, fileinfo, ftp, redis, memcached
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress ${{ matrix.flags }}
+
+      - name: Execute tests
+        continue-on-error: ${{ matrix.php > 8 }}
+        run: vendor/bin/phpunit --verbose

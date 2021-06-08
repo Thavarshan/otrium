@@ -4,7 +4,7 @@
 
 Otrium a fast-growing e-commerce company that serves more than 2 million customers. The company has been running for several years and is now going through its growth stage. This is an internal reporting tool designed with very specific requirements and is highly opinionated.
 
-> No frameworks of any type have been used on this application although third-party libraries were incorporated to ease development load.
+> No frameworks of any type has been used on this application although third-party libraries were incorporated to ease development load.
 
 ***CI/CD has been set-up using Github Actions and can be found [here](https://github.com/Thavarshan/otrium/actions).***
 
@@ -40,7 +40,7 @@ $ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 
 ## Download
 
-There are several ways you can get the Otrium App boilerplate:
+There are several ways you can get the Otrium App:
 
 ### Cloning The GitHub Repository
 
@@ -54,13 +54,17 @@ This will clone the latest version of the Otrium App repository to a **otrium** 
 
 ### Downloading The Repository Zip File
 
-Another way to use the Otrium App boilerplate is to download a zip copy from the [main branch on GitHub](https://github.com/Thavarshan/otrium/archive/refs/heads/main.zip). You can also do this using the `wget` command:
+Another way to use the Otrium App is to download a zip copy from the [main branch on GitHub](https://github.com/Thavarshan/otrium/archive/refs/heads/main.zip). You can also do this using the `wget` command:
 
 ```bash
 $ wget https://github.com/Thavarshan/otrium/archive/refs/heads/main.zip -O otrium.zip; unzip otrium.zip; rm otrium.zip
 ```
 
 Don't forget to rename **otrium-main** as **otrium**.
+
+### Downloading The Release Build
+
+Yet another way to download the Otrium application is to download the latest release build. You can find the latest release [here](https://github.com/Thavarshan/otrium/archive/refs/tags/v1.0.1.zip).
 
 ## Installation
 
