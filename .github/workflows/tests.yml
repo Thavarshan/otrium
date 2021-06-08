@@ -19,11 +19,6 @@ jobs:
         ports:
           - 33306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-      redis:
-        image: redis:5.0
-        ports:
-          - 6379:6379
-        options: --entrypoint redis-server
 
     strategy:
       fail-fast: true
@@ -52,7 +47,7 @@ jobs:
       - name: Load dummy data
         run: |
           sudo /etc/init.d/mysql start
-          mysql -u root -p --default-character-set=utf8 test < tests/Fixtures/test.sql
+          mysql -h 127.0.0.1 -u root -p --default-character-set=utf8 test < tests/Fixtures/test.sql
 
       - name: Install dependencies
         uses: nick-invision/retry@v1
