@@ -6,6 +6,8 @@ Otrium a fast-growing e-commerce company that serves more than 2 million custome
 
 > No frameworks of any type have been used on this application although third-party libraries were incorporated to ease development load.
 
+***CI/CD has been set-up using Github Actions and can be found [here](https://github.com/Thavarshan/otrium/actions).***
+
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble the application:
 * MySQL - Go through [MYSQL Official Website](https://www.mysql.com/) and proceed to their [Official Manual](https://dev.mysql.com/doc/), which should help you understand MySQL better.
