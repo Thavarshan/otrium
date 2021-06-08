@@ -24,7 +24,7 @@ class DatabaseServiceProvider extends ServiceProvider
     protected function registerConnectionServices(): void
     {
         $this->app->bind('db', function ($app) {
-            $connection = new Connection($app['config']->get('database'));
+            $connection = new Connection($app->config('database'));
 
             $connection->connect();
 
