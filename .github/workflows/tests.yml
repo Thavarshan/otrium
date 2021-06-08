@@ -14,7 +14,7 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: test
         ports:
           - 33306:3306
@@ -47,7 +47,7 @@ jobs:
       - name: Load dummy data
         run: |
           sudo /etc/init.d/mysql start
-          mysql -h 127.0.0.1 --port 33306 -u root -p root --default-character-set=utf8 test < tests/Fixtures/test.sql
+          mysql -h 127.0.0.1 --port 33306 -u root --default-character-set=utf8 test < tests/Fixtures/test.sql
 
       - name: Install dependencies
         uses: nick-invision/retry@v1

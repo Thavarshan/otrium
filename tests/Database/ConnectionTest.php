@@ -307,7 +307,7 @@ class ConnectionTest extends TestCase
             'port' => '33306',
             'database' => 'test',
             'username' => 'root',
-            'password' => 'root',
+            'password' => '',
         ];
 
         $connection = new Connection($config);
