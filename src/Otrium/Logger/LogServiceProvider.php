@@ -18,7 +18,7 @@ class LogServiceProvider extends ServiceProvider
     {
         $this->app->singleton('logger', function ($app) {
             return new Logger(
-                $this->createLogDriver($app['config']->get('logging'))
+                $this->createLogDriver($app->config('logging'))
             );
         });
     }
