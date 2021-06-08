@@ -59,6 +59,8 @@ class Connection implements ConnectionContract
      */
     public function constructDns(array $config): string
     {
+        dd("mysql:host={$config['host']};dbname={$config['database']}");
+
         return "mysql:host={$config['host']};dbname={$config['database']}";
     }
 
