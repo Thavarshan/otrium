@@ -303,11 +303,11 @@ class ConnectionTest extends TestCase
     public function makeConnection()
     {
         $config = [
-            'host' => 'localhost',
-            'port' => '3306',
+            'host' => '127.0.0.1',
+            'port' => '33306',
             'database' => 'test',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
         ];
 
         $connection = new Connection($config);
