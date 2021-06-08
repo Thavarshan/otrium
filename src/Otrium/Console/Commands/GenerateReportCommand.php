@@ -7,24 +7,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Otrium\Console\Command;
 use League\Csv\InvalidArgument;
-use Otrium\Reports\BrandReport;
-use Otrium\Reports\DailyReport;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class GenerateReportCommand extends Command
 {
-    /**
-     * List of available report types.
-     *
-     * @var array
-     */
-    protected $availableReports = [
-        'daily' => DailyReport::class,
-        'brand' => BrandReport::class,
-    ];
-
     /**
      * Configure the command options.
      *
@@ -49,17 +37,35 @@ class GenerateReportCommand extends Command
     {
         $name = $input->getArgument('name');
 
-        if (! Arr::exists($this->availableReports, $name)) {
+        if (! Arr::exists($this->availableReports(), $name)) {
             throw new InvalidArgument("Reports cannot be generated for {$name}.");
         }
 
-        $this->generateReportFiles($name, $this->availableReports[$name]);
+        $this->generateReportFiles($name, $this->availableReports($name));
 
         $name = Str::ucfirst($name);
 
         $output->writeln("<info>{$name} report generated. You may find them in the [reports] directory.</info>");
 
         return 0;
+    }
+
+    /**
+     * Get one or all available report types.
+     *
+     * @param string|null $name
+     *
+     * @return string|array
+     */
+    protected function availableReports(?string $name = null)
+    {
+        $availableReports = $this->app->config('reports.available_reports');
+
+        if (! is_null($name)) {
+            return $availableReports[$name];
+        }
+
+        return $availableReports;
     }
 
     /**

@@ -3,9 +3,11 @@
 namespace Otrium\Core;
 
 use Throwable;
+use Otrium\Core\Contracts\Application;
 use Otrium\Console\Commands\GenerateReportCommand;
 use Otrium\Core\Contracts\Kernel as KernelContract;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Application as Console;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Kernel implements KernelContract
@@ -16,6 +18,15 @@ class Kernel implements KernelContract
      * @var \Otrium\Core\Application
      */
     protected $app;
+
+    /**
+     * All commands provided by otrium application.
+     *
+     * @var array
+     */
+    protected $commands = [
+        GenerateReportCommand::class,
+    ];
 
     /**
      * Create new Otrium application kernel instance.
@@ -39,21 +50,37 @@ class Kernel implements KernelContract
      */
     public function handle(InputInterface $input, ?OutputInterface $output = null): int
     {
-        $console = $this->app->make('console');
-
-        $console->add(new GenerateReportCommand($this->app));
+        $console = $this->loadCommands($this->app->make('console'));
 
         try {
-            $console->doRun($input, $output);
+            $status = $console->doRun($input, $output);
         } catch (Throwable $e) {
             $this->reportException($e);
 
-            $console->renderThrowable($e, $output);
+            if ($this->app->config('app.debug')) {
+                $console->renderThrowable($e, $output);
+            }
 
             return 1;
         }
 
-        return 0;
+        return $status;
+    }
+
+    /**
+     * Load all registered console commands.
+     *
+     * @param \Symfony\Component\Console\Application $console
+     *
+     * @return \Symfony\Component\Console\Application
+     */
+    protected function loadCommands(Console $console): Console
+    {
+        foreach ($this->commands as $command) {
+            $console->add($this->app->make($command));
+        }
+
+        return $console;
     }
 
     /**

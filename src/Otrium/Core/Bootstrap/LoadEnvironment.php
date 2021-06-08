@@ -4,7 +4,7 @@ namespace Otrium\Core\Bootstrap;
 
 use Dotenv\Dotenv;
 use Illuminate\Support\Env;
-use Otrium\Core\Application;
+use Otrium\Core\Contracts\Application;
 use Otrium\Core\Contracts\Bootstrap as BootstrapperInterface;
 
 class LoadEnvironment implements BootstrapperInterface
@@ -12,7 +12,7 @@ class LoadEnvironment implements BootstrapperInterface
     /**
      * Bootstrap the given application.
      *
-     * @param \Otrium\Core\Application $app
+     * @param \Otrium\Core\Contracts\Application $app
      *
      * @return void
      */
@@ -24,7 +24,7 @@ class LoadEnvironment implements BootstrapperInterface
     /**
      * Create a Dotenv instance.
      *
-     * @param \Otrium\Core\Application $app
+     * @param \Otrium\Core\Contracts\Application $app
      *
      * @return \Dotenv\Dotenv
      */

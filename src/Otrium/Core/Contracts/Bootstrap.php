@@ -2,14 +2,12 @@
 
 namespace Otrium\Core\Contracts;
 
-use Otrium\Core\Application;
-
 interface Bootstrap
 {
     /**
      * Bootstrap the given application.
      *
-     * @param \Otrium\Core\Application $app
+     * @param \Otrium\Core\Contracts\Application $app
      *
      * @return void
      */

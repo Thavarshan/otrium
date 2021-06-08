@@ -5,12 +5,13 @@ namespace Otrium\Core;
 use Illuminate\Container\Container;
 use Otrium\Files\FileServiceProvider;
 use Otrium\Logger\LogServiceProvider;
-use Otrium\Console\ConsoleServiceProvider;
 use Otrium\Core\Bootstrap\LoadEnvironment;
 use Otrium\Core\Bootstrap\LoadConfiguration;
 use Otrium\Database\DatabaseServiceProvider;
+use Symfony\Component\Console\Application as Console;
+use Otrium\Core\Contracts\Application as ApplicationContract;
 
-class Application extends Container
+class Application extends Container implements ApplicationContract
 {
     /**
      * The Otrium application version.
@@ -149,7 +150,7 @@ class Application extends Container
 
         $this->instance('app', $this);
 
-        $this->instance(Application::class, $this);
+        $this->instance(ApplicationContract::class, $this);
     }
 
     /**
@@ -162,7 +163,22 @@ class Application extends Container
         $this->register(new LogServiceProvider($this));
         $this->register(new FileServiceProvider($this));
         $this->register(new DatabaseServiceProvider($this));
-        $this->register(new ConsoleServiceProvider($this));
+
+        $this->registerConsole();
+
+        $this->booted = true;
+    }
+
+    /**
+     * Register the console interface provider.
+     *
+     * @return void
+     */
+    protected function registerConsole(): void
+    {
+        $this->singleton('console', function () {
+            return new Console($this->config('app.name'), $this->version());
+        });
     }
 
     /**
@@ -227,5 +243,22 @@ class Application extends Container
     public function environmentFile(): string
     {
         return $this->environmentFile ?: '.env';
+    }
+
+    /**
+     * Get the application configurations.
+     *
+     * @param string|null $key
+     * @param mixed       $default
+     *
+     * @return mixed
+     */
+    public function config(?string $key = null, $default = null)
+    {
+        if (is_null($key)) {
+            return $this['config'];
+        }
+
+        return $this['config']->get($key, $default);
     }
 }

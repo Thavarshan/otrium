@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Otrium a fast growing e-commerce company which serves more than 2 million customers. The company has been running for several years and is now going through its growth stage. This is an internal reporting tool designed with very specific requirements and in an opinionated manner.
+Otrium a fast growing e-commerce company which serves more than 2 million customers. The company has been running for several years and is now going through its growth stage. This is an internal reporting tool designed with very specific requirements and is highly opinionated.
 
 ## Installation
 
@@ -57,6 +57,10 @@ In order to ensure that the Otrium community is welcoming to all, please review 
 ## Security Vulnerabilities
 
 Please review [our security policy](https://github.com/Thavarshan/otrium/security/policy) on how to report security vulnerabilities.
+
+## Disclaimer
+
+This is an exercise application and not a polished production ready version. This app should not be used in a production environment and please mind the license provided.
 
 ## License
 
