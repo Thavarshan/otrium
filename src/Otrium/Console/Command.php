@@ -27,4 +27,56 @@ class Command extends SymfonyCommand
 
         $this->app = $app;
     }
+
+    /**
+     * Get the value of a command argument.
+     *
+     * @param string|null $key
+     *
+     * @return string|array|null
+     */
+    public function argument(?string $key = null)
+    {
+        if (is_null($key)) {
+            return $this->input->getArguments();
+        }
+
+        return $this->input->getArgument($key);
+    }
+
+    /**
+     * Get all of the arguments passed to the command.
+     *
+     * @return array
+     */
+    public function arguments(): array
+    {
+        return $this->argument();
+    }
+
+    /**
+     * Get the value of a command option.
+     *
+     * @param string|null $key
+     *
+     * @return mixed
+     */
+    public function option(?string $key = null)
+    {
+        if (is_null($key)) {
+            return $this->input->getOptions();
+        }
+
+        return $this->input->getOption($key);
+    }
+
+    /**
+     * Get all of the options passed to the command.
+     *
+     * @return array
+     */
+    public function options(): array
+    {
+        return $this->option();
+    }
 }

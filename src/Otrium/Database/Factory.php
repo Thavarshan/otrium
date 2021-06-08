@@ -289,9 +289,9 @@ class Factory
      *
      * @param string $selectExpression
      *
-     * @return array
+     * @return array|string
      */
-    public function readField(?string $selectExpression = null): array
+    public function readField(?string $selectExpression = null)
     {
         $statement = $this->composeReadStatement($selectExpression);
 
