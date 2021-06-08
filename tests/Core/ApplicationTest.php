@@ -68,4 +68,32 @@ class ApplicationTest extends TestCase
         $this->assertTrue($app->providerIsLoaded($class));
         $this->assertFalse($app->providerIsLoaded(ApplicationBasicServiceProviderStub::class));
     }
+
+    public function testAccessConfiguratoins()
+    {
+        $app = new Application(__DIR__ . '/../Fixtures');
+
+        $this->assertEquals('bar', $app->config('app.foo'));
+    }
+
+    public function testDefaultApplicationEnvFile()
+    {
+        $app = new Application('.');
+
+        $this->assertEquals('.env', $app->environmentFile());
+    }
+
+    public function testDetermineBootStatus()
+    {
+        $app = new Application('.');
+
+        $this->assertTrue($app->isBooted());
+    }
+
+    public function testGetApplicationBasePath()
+    {
+        $app = new Application('./');
+
+        $this->assertEquals('.', $app->basePath());
+    }
 }
