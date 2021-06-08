@@ -14,6 +14,13 @@ abstract class Report
     protected $db;
 
     /**
+     * The custom raw query statement use to generate report data.
+     *
+     * @var string
+     */
+    protected static $rawStatement = '';
+
+    /**
      * Create new report generator instance.
      *
      * @param \Otrium\Database\Manager $db
@@ -26,9 +33,24 @@ abstract class Report
     }
 
     /**
-     * Generate the report.
+     * Set a custom raw query statement.
      *
-     * @return mixed
+     * @param string $statement
+     *
+     * @return void
      */
-    abstract public function generate();
+    public static function setQueryStatement(string $statement): void
+    {
+        static::$rawStatement = $statement;
+    }
+
+    /**
+     * Set a custom raw query statement.
+     *
+     * @return string
+     */
+    public static function queryStatement(): string
+    {
+        return static::$rawStatement;
+    }
 }

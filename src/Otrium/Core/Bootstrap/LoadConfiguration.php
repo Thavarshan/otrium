@@ -4,9 +4,9 @@ namespace Otrium\Core\Bootstrap;
 
 use Exception;
 use SplFileInfo;
-use Otrium\Core\Application;
 use Illuminate\Config\Repository;
 use Symfony\Component\Finder\Finder;
+use Otrium\Core\Contracts\Application;
 use Otrium\Core\Contracts\Bootstrap as BootstrapperInterface;
 use Illuminate\Contracts\Config\Repository as RepositoryContract;
 
@@ -15,7 +15,7 @@ class LoadConfiguration implements BootstrapperInterface
     /**
      * Bootstrap the given application.
      *
-     * @param \Otrium\Core\Application $app
+     * @param \Otrium\Core\Contracts\Application $app
      *
      * @return void
      */
@@ -35,7 +35,7 @@ class LoadConfiguration implements BootstrapperInterface
     /**
      * Load the configuration items from all of the files.
      *
-     * @param \Otrium\Core\Application                $app
+     * @param \Otrium\Core\Contracts\Application      $app
      * @param \Illuminate\Contracts\Config\Repository $repository
      *
      * @return void

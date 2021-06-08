@@ -2,21 +2,23 @@
 
 ## Introduction
 
-Otrium a fast growing e-commerce company which serves more than 2 million customers. The company has been running for several years and is now going through its growth stage. This is an internal reporting tool designed with very specific requirements and in an opinionated manner.
+Otrium a fast-growing e-commerce company that serves more than 2 million customers. The company has been running for several years and is now going through its growth stage. This is an internal reporting tool designed with very specific requirements and is highly opinionated.
+
+> No frameworks of any type have been used on this application although third-party libraries were incorporated to ease development load.
 
 ## Installation
 
 Download the latest release of the application [here](./).
 
-Otrium uses `MySQL` as it's primary database management system. Fake database records have been provided for testing purposes and can be found within the `data` directory.
+Otrium uses `MySQL` as its primary database management system. Fake database records have been provided for testing purposes and can be found within the `data` directory.
 
-After you set up your database and load it with the fake data. Open up the downloaded directory from you terminal application and run:
+After you set up your database and load it with the fake data. Open up the downloaded directory from your terminal application and run:
 
 ```shell
 cp .env.example .env && chmod +x bin/otrium
 ```
 
-This is to set the application configurations and prepare it for usage.
+This is to set the application configurations and prepare them for usage.
 
 #### Configurations
 
@@ -52,11 +54,15 @@ Thank you for considering contributing to Otrium! The contribution guide can be 
 
 ## Code of Conduct
 
-In order to ensure that the Otrium community is welcoming to all, please review and abide by the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
+To ensure that the Otrium community is welcoming to all, please review and abide by the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
 ## Security Vulnerabilities
 
 Please review [our security policy](https://github.com/Thavarshan/otrium/security/policy) on how to report security vulnerabilities.
+
+## Disclaimer
+
+This is an exercise application and not a polished production-ready version. This app should not be used in a production environment and please mind the license provided.
 
 ## License
 
