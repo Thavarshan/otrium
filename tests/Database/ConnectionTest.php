@@ -7,6 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Test Skipped on CI to offer multi-platform testing.
+ *
+ * @group database
  */
 class ConnectionTest extends TestCase
 {
@@ -38,9 +40,9 @@ class ConnectionTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->markTestSkipped();
-
         parent::setUp();
+
+        $this->markTestSkipped();
 
         $this->connection->pdo()->beginTransaction();
     }
