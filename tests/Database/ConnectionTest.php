@@ -19,30 +19,13 @@ class ConnectionTest extends TestCase
      */
     protected $connection;
 
-    public function __construct(?string $name = null, array $data = [], $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-
-        $config = [
-            'host' => 'localhost',
-            'port' => '3306',
-            'database' => 'test',
-            'username' => 'root',
-            'password' => '',
-        ];
-
-        $connection = new Connection($config);
-
-        $connection->connect();
-
-        $this->connection = $connection;
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->markTestSkipped();
+
+        $this->makeConnection();
 
         $this->connection->pdo()->beginTransaction();
     }
@@ -313,5 +296,22 @@ class ConnectionTest extends TestCase
         $result = $this->connection->find('user')->count();
 
         $this->assertEquals(2, $result);
+    }
+
+    public function makeConnection()
+    {
+        $config = [
+            'host' => 'localhost',
+            'port' => '3306',
+            'database' => 'test',
+            'username' => 'root',
+            'password' => '',
+        ];
+
+        $connection = new Connection($config);
+
+        $connection->connect();
+
+        $this->connection = $connection;
     }
 }

@@ -8,7 +8,7 @@ Otrium a fast-growing e-commerce company that serves more than 2 million custome
 
 ## Installation
 
-Download the latest release of the application [here](./).
+Download the latest release of the application [here](https://github.com/Thavarshan/otrium/archive/refs/tags/v1.0.0.zip).
 
 Otrium uses `MySQL` as its primary database management system. Fake database records have been provided for testing purposes and can be found within the `data` directory.
 
