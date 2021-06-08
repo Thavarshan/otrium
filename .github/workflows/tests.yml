@@ -52,7 +52,7 @@ jobs:
       - name: Load dummy data
         run: |
           sudo /etc/init.d/mysql start
-          mysql -u root --default-character-set=utf8 test < tests/Fixtures/test.sql
+          mysql -u root -p --default-character-set=utf8 test < tests/Fixtures/test.sql
 
       - name: Install dependencies
         uses: nick-invision/retry@v1
