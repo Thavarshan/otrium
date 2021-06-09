@@ -64,7 +64,7 @@ Don't forget to rename **otrium-main** as **otrium**.
 
 ### Downloading The Release Build
 
-Yet another way to download the Otrium application is to download the latest release build. You can find the latest release [here](https://github.com/Thavarshan/otrium/archive/refs/tags/v1.0.1.zip).
+Yet another way to download the Otrium application is to download the latest release build. You can find the latest release [here](https://github.com/Thavarshan/otrium/archive/refs/tags/v1.1.0.zip).
 
 ## Installation
 
