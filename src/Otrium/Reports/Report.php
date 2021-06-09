@@ -3,6 +3,7 @@
 namespace Otrium\Reports;
 
 use Carbon\Carbon;
+use Otrium\Reports\Exceptions\ReportException;
 use Otrium\Database\Contracts\Connection as DatabaseManager;
 
 abstract class Report
@@ -19,7 +20,7 @@ abstract class Report
      *
      * @var string
      */
-    protected static $rawStatement = '';
+    protected static $rawStatement;
 
     /**
      * Create new report generator instance.
@@ -31,6 +32,24 @@ abstract class Report
     public function __construct(DatabaseManager $db)
     {
         $this->db = $db;
+    }
+
+    /**
+     * Generate the report.
+     *
+     * @param string|null $from
+     *
+     * @return mixed
+     */
+    public function generate(?string $from = null)
+    {
+        [$from, $to] = array_values($this->parseDateRange($from));
+
+        if (! $query = static::queryStatement()) {
+            throw new ReportException('Report specific query statement has not been set.');
+        }
+
+        return $this->db->read(sprintf($query, $to, $from));
     }
 
     /**

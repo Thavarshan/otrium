@@ -119,11 +119,11 @@ An argument must be provided when running the application. This is to determine 
 
 #### Parameters
 
-| Parameters      | Description                                | Example Value   |
-| --------------- | ------------------------------------------ | --------------- |
-| command         | Name of the command to be run              | report:generate |
-| name            | Name of report to be generated             | daily/brand     |
-| from (optional) | Date from which report should be generated | 2018-01-12      |
+| Parameters      | Description                                | Example Value          |
+| --------------- | ------------------------------------------ | ---------------------- |
+| command         | Name of the command to be run              | report:generate        |
+| name            | Name of report to be generated             | daily/brand            |
+| from (optional) | Date from which report should be generated | 2018-01-12 (Y-m-d)     |
 
 > The generated report CSV files can be found within the `reports` directory.
 
