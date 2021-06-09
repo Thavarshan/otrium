@@ -62,7 +62,6 @@ jobs:
         continue-on-error: ${{ matrix.php > 8 }}
         run: vendor/bin/phpunit --verbose
         env:
-          DB_DATABASE: test
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USERNAME: root
 
