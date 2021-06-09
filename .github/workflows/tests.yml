@@ -46,11 +46,10 @@ jobs:
       - name: Load dummy data
         run: |
           sudo /etc/init.d/mysql start
-          mysql -h 127.0.0.1 --port 33306 -u root
-          CREATE DATABASE IF NOT EXISTS test
-          CREATE DATABASE IF NOT EXISTS otrium
-          --default-character-set=utf8 test < tests/Fixtures/test.sql
-          --default-character-set=utf8 otrium < data/otrium.sql
+          mysql -h 127.0.0.1 --port 33306 -u root CREATE DATABASE IF NOT EXISTS test
+          mysql -h 127.0.0.1 --port 33306 -u root CREATE DATABASE IF NOT EXISTS otrium
+          mysql -h 127.0.0.1 --port 33306 -u root --default-character-set=utf8 test < tests/Fixtures/test.sql
+          mysql -h 127.0.0.1 --port 33306 -u root --default-character-set=utf8 otrium < data/otrium.sql
 
       - name: Install dependencies
         uses: nick-invision/retry@v1
