@@ -75,7 +75,7 @@ The application comes pre-bundled with a `composer.json` file that contains the 
 To install the dependencies, run this in the application folder from the command line:
 
 ```bash
-composer update
+$ composer update
 ```
 
 This command does a few things:
@@ -92,7 +92,7 @@ Before running the application itself, please import the test data provided in a
 Finally from within your command-line inside the downloaded **otrium** directory run:
 
 ```bash
-cp .env.example .env && chmod +x bin/otrium
+$ cp .env.example .env && chmod +x bin/otrium
 ```
 
 This is to set the application configurations and prepare them for usage. A file with the name `.env` or `.env.example` has been provided with `otrium`. This is where you may save information regarding the application for instance the database credentials.
@@ -106,13 +106,13 @@ Make sure you rename `.env.example` to `.env` and set your `MySQL` database cred
 To run the application. Open up the downloaded directory on your terminal application and run:
 
 ```bash
-bin/otrium report:generate daily
+$ bin/otrium report:generate daily
 ```
 
 or
 
 ```bash
-bin/otrium report:generate brand
+$ bin/otrium report:generate brand
 ```
 
 An argument must be provided when running the application. This is to determine what kind of report is to be generated.
@@ -124,7 +124,7 @@ An argument must be provided when running the application. This is to determine 
 If you're not sure about how to run the command or want to know what commands are available run:
 
 ```bash
-bin/otrium list
+$ bin/otrium list
 ```
 
 ### Available Reports
