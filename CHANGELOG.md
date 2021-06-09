@@ -1,5 +1,18 @@
 # Release Notes
 
+## [v1.1.0 (2021-06-09)](https://github.com/Thavarshan/otrium/compare/v1.0.1...v1.1.0)
+
+### Added
+
+- Date option to generate report from
+- Report gereration tests
+
+### Changed
+
+- Cleanup and refactor report generation classes
+- Updated documentation to show fake data import
+- Update documentation to show how to use `--from` date feature
+
 ## [v1.0.1 (2021-06-08)](https://github.com/Thavarshan/otrium/compare/v1.0.0...v1.0.1)
 
 ### Added
