@@ -10,8 +10,10 @@
 ### Changed
 
 - Cleanup and refactor report generation classes
+- Cleanup and refactor `GenerateReportCommand`
 - Updated documentation to show fake data import
 - Update documentation to show how to use `--from` date feature
+- Update documentation to show example configurations
 
 ## [v1.0.1 (2021-06-08)](https://github.com/Thavarshan/otrium/compare/v1.0.0...v1.0.1)
 
