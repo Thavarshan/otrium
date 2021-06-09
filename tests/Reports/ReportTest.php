@@ -41,9 +41,11 @@ class MockReport extends Report implements ReportContract
     /**
      * Generate the report.
      *
+     * @param string|null $from
+     *
      * @return mixed
      */
-    public function generate()
+    public function generate(?string $from = null)
     {
     }
 }

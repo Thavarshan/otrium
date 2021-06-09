@@ -7,9 +7,9 @@ interface Report
     /**
      * Generate the report.
      *
-     * @param mixed $parameters
+     * @param string|null $from
      *
      * @return mixed
      */
-    public function generate(...$parameters);
+    public function generate(?string $from = null);
 }

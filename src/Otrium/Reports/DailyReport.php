@@ -2,7 +2,9 @@
 
 namespace Otrium\Reports;
 
-class DailyReport extends Report
+use Otrium\Reports\Contracts\Report as ReportContract;
+
+class DailyReport extends Report implements ReportContract
 {
     /**
      * The custom raw query statement use to generate report data.

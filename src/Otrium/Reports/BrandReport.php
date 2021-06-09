@@ -2,7 +2,9 @@
 
 namespace Otrium\Reports;
 
-class BrandReport extends Report
+use Otrium\Reports\Contracts\Report as ReportContract;
+
+class BrandReport extends Report implements ReportContract
 {
     /**
      * The custom raw query statement use to generate report data.
