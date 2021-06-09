@@ -115,6 +115,14 @@ An argument must be provided when running the application. This is to determine 
 
 > The generated report CSV files can be found within the `reports` directory.
 
+#### Help
+
+If you're not sure about how to run the command or want to know what commands are available run:
+
+```bash
+bin/otrium list
+```
+
 ### Available Reports
 
 - `daily` - Generate 7 days turnover (excluding VAT) per day.
