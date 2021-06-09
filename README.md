@@ -102,13 +102,13 @@ Make sure you rename `.env.example` to `.env` and set your `MySQL` database cred
 To run the application. Open up the downloaded directory on your terminal application and run:
 
 ```bash
-bin/otrium daily
+bin/otrium report:generate daily
 ```
 
 or
 
 ```bash
-bin/otrium brand
+bin/otrium report:generate brand
 ```
 
 An argument must be provided when running the application. This is to determine what kind of report is to be generated.
