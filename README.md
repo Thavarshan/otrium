@@ -83,11 +83,11 @@ This command does a few things:
 * If you're running in a development environment, it will then also install development dependencies needed for testing and running your application.
 * To update these packages later on, just run `composer update` again.
 
-#### Dummy Data
+### Dummy Data
 
 Before running the application itself, please import the test data provided in an `.sql` file located within the `data` directory. Dates have been modified so the report is generated for dates from **today** to the past 7 days. Data that has been provided may need modifications depending on when this application is being run.
 
-#### Running The Application
+### Running The Application
 
 Finally from within your command-line inside the downloaded **otrium** directory run:
 
