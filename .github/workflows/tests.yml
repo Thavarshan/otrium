@@ -15,7 +15,6 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: test, otrium
         ports:
           - 33306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -47,8 +46,11 @@ jobs:
       - name: Load dummy data
         run: |
           sudo /etc/init.d/mysql start
-          mysql -h 127.0.0.1 --port 33306 -u root --default-character-set=utf8 test < tests/Fixtures/test.sql
-          mysql -h 127.0.0.1 --port 33306 -u root --default-character-set=utf8 otrium < data/otrium.sql
+          mysql -h 127.0.0.1 --port 33306 -u root
+          -e CREATE DATABASE IF NOT EXISTS test
+          -e CREATE DATABASE IF NOT EXISTS otrium
+          --default-character-set=utf8 test < tests/Fixtures/test.sql
+          --default-character-set=utf8 otrium < data/otrium.sql
 
       - name: Install dependencies
         uses: nick-invision/retry@v1
