@@ -99,6 +99,17 @@ This is to set the application configurations and prepare them for usage. A file
 
 Make sure you rename `.env.example` to `.env` and set your `MySQL` database credentials in the `.env` file.
 
+###### Example Configurations
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=otrium
+DB_USERNAME=
+DB_PASSWORD=
+```
+
 ## Usage
 
 ### Running The Application
