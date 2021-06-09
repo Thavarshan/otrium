@@ -4,9 +4,9 @@
 
 Otrium a fast-growing e-commerce company that serves more than 2 million customers. The company has been running for several years and is now going through its growth stage. This is an internal reporting tool designed with very specific requirements and is highly opinionated.
 
-> No frameworks of any type has been used on this application although third-party libraries were incorporated to ease development load.
+> No frameworks of any type have been used on this application although third-party libraries were incorporated to ease development load.
 
-***CI/CD has been set-up using Github Actions and can be found [here](https://github.com/Thavarshan/otrium/actions).***
+***CI/CD has been set up using Github Actions and can be found [here](https://github.com/Thavarshan/otrium/actions).***
 
 ## Before You Begin
 Before you begin we recommend you read about the basic building blocks that assemble the application:
@@ -85,7 +85,7 @@ This command does a few things:
 
 ### Dummy Data
 
-Before running the application itself, please import the test data provided in an `.sql` file located within the `data` directory. Dates have been modified so the report is generated for dates from **today** to the past 7 days. Data that has been provided may need modifications depending on when this application is being run.
+Before running the application itself, please import the test data provided in a `.sql` file located within the `data` directory. Dates have been modified so the report is generated for dates from **today** to the past 7 days. The data that has been provided may need modifications depending on when this application is being run.
 
 ### Configurations
 
@@ -95,7 +95,7 @@ Finally from within your command-line inside the downloaded **otrium** directory
 $ cp .env.example .env && chmod +x bin/otrium
 ```
 
-This is to set the application configurations and prepare them for usage. A file with the name `.env` or `.env.example` has been provided with `otrium`. This is where you may save information regarding the application for instance the database credentials.
+This is to set the application configurations and prepare them for usage. A file with the name `.env` or `.env.example` has been provided with `otrium`. This is where you may save sensitive information regarding the application for instance the database credentials.
 
 Make sure you rename `.env.example` to `.env` and set your `MySQL` database credentials in the `.env` file.
 
