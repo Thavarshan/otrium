@@ -87,7 +87,7 @@ This command does a few things:
 
 Before running the application itself, please import the test data provided in an `.sql` file located within the `data` directory. Dates have been modified so the report is generated for dates from **today** to the past 7 days. Data that has been provided may need modifications depending on when this application is being run.
 
-### Running The Application
+### Configurations
 
 Finally from within your command-line inside the downloaded **otrium** directory run:
 
@@ -95,15 +95,13 @@ Finally from within your command-line inside the downloaded **otrium** directory
 cp .env.example .env && chmod +x bin/otrium
 ```
 
-This is to set the application configurations and prepare them for usage.
-
-### Configurations
-
-A file with the name `.env` or `.env.example` has been provided with `otrium`. This is where you may save information regarding the application for instance the database credentials.
+This is to set the application configurations and prepare them for usage. A file with the name `.env` or `.env.example` has been provided with `otrium`. This is where you may save information regarding the application for instance the database credentials.
 
 Make sure you rename `.env.example` to `.env` and set your `MySQL` database credentials in the `.env` file.
 
 ## Usage
+
+### Running The Application
 
 To run the application. Open up the downloaded directory on your terminal application and run:
 
