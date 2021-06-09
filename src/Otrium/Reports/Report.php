@@ -2,6 +2,7 @@
 
 namespace Otrium\Reports;
 
+use Carbon\Carbon;
 use Otrium\Database\Contracts\Connection as DatabaseManager;
 
 abstract class Report
@@ -52,5 +53,23 @@ abstract class Report
     public static function queryStatement(): string
     {
         return static::$rawStatement;
+    }
+
+    /**
+     * Calculate the from and to dates and parse them into proper formats.
+     *
+     * @param string|null $from
+     *
+     * @return array
+     */
+    public function parseDateRange(?string $from = null): array
+    {
+        if (is_null($from)) {
+            $from = Carbon::now()->toDateString();
+        }
+
+        $to = Carbon::parse($from)->subDays(7)->toDateString();
+
+        return compact('from', 'to');
     }
 }

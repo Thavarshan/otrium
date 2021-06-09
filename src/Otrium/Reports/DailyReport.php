@@ -9,17 +9,25 @@ class DailyReport extends Report implements ReportContract
     /**
      * The custom raw query statement use to generate report data.
      *
+     * First %s represents the "to" date and the second is the "from" date.
+     *
      * @var string
      */
-    protected static $rawStatement = 'SELECT id, date, turnover - (turnover * 0.21 / 100) FROM gmv WHERE date >= DATE(NOW()) + INTERVAL - 7 DAY';
+    protected static $rawStatement = "SELECT id, date, turnover - (turnover * 0.21 / 100) FROM gmv WHERE date BETWEEN  CAST('%s' AS DATE) AND  CAST('%s' AS DATE)";
 
     /**
      * Generate the report.
      *
+     * @param string|null $from
+     *
      * @return mixed
      */
-    public function generate()
+    public function generate(?string $from = null)
     {
-        return $this->db->read(static::queryStatement());
+        [$from, $to] = array_values($this->parseDateRange($from));
+
+        return $this->db->read(
+            sprintf(static::queryStatement(), $to, $from)
+        );
     }
 }

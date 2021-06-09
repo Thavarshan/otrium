@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Otrium\Console\Command;
 use League\Csv\InvalidArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -22,7 +23,8 @@ class GenerateReportCommand extends Command
     {
         $this->setName('report:generate')
             ->setDescription('Generate sales report')
-            ->addArgument('name', InputArgument::REQUIRED);
+            ->addArgument('name', InputArgument::REQUIRED)
+            ->addOption('from', null, InputOption::VALUE_OPTIONAL, 'Generates report "from" this date (Y-m-d).');
     }
 
     /**
@@ -41,7 +43,9 @@ class GenerateReportCommand extends Command
             throw new InvalidArgument("Reports cannot be generated for {$name}.");
         }
 
-        $this->generateReportFiles($name, $this->availableReports($name));
+        $this->generateReportFiles(
+            $name, $input->getOption('from'), $this->availableReports($name)
+        );
 
         $name = Str::ucfirst($name);
 
@@ -71,15 +75,16 @@ class GenerateReportCommand extends Command
     /**
      * Generate the requested report and write it to a CSV file.
      *
-     * @param string $name
-     * @param string $report
+     * @param string      $name
+     * @param string|null $from
+     * @param string      $report
      *
      * @return void
      */
-    public function generateReportFiles(string $name, string $report): void
+    public function generateReportFiles(string $name, ?string $from = null, string $report): void
     {
         $report = new $report($this->app['db']);
 
-        $this->app->make(Writer::class)->write($name, $report->generate());
+        $this->app->make(Writer::class)->write($name, $report->generate($from));
     }
 }

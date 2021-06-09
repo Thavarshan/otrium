@@ -4,6 +4,7 @@ namespace Otrium\Tests\Database;
 
 use Otrium\Database\Connection;
 use PHPUnit\Framework\TestCase;
+use Otrium\Tests\Concerns\InteractsWithSystem;
 
 /**
  * Test Skipped on CI to offer multi-platform testing.
@@ -12,6 +13,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ConnectionTest extends TestCase
 {
+    use InteractsWithSystem;
+
     /**
      * The database connection instance.
      *
@@ -304,7 +307,7 @@ class ConnectionTest extends TestCase
     {
         $config = [
             'host' => '127.0.0.1',
-            'port' => '33306',
+            'port' => env('DB_PORT', '33306'),
             'database' => 'test',
             'username' => 'root',
             'password' => '',
@@ -315,15 +318,5 @@ class ConnectionTest extends TestCase
         $connection->connect();
 
         $this->connection = $connection;
-    }
-
-    /**
-     * Determine whether the current environment is Windows based.
-     *
-     * @return bool
-     */
-    protected function isWindows(): bool
-    {
-        return \PHP_OS_FAMILY === 'Windows';
     }
 }

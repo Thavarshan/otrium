@@ -85,7 +85,7 @@ This command does a few things:
 
 ### Dummy Data
 
-Before running the application itself, please import the test data provided in a `.sql` file located within the `data` directory. Dates have been modified so the report is generated for dates from **today** to the past 7 days. The data that has been provided may need modifications depending on when this application is being run.
+Before running the application itself, please import the test data provided in a `.sql` file located within the `data` directory. Dates have been modified so the report is generated for dates from the **date you provide** as an argument or by default **today** to the past 7 days.
 
 ### Configurations
 
@@ -106,16 +106,24 @@ Make sure you rename `.env.example` to `.env` and set your `MySQL` database cred
 To run the application. Open up the downloaded directory on your terminal application and run:
 
 ```bash
-$ bin/otrium report:generate daily
+$ bin/otrium report:generate daily --from=2018-01-12
 ```
 
 or
 
 ```bash
-$ bin/otrium report:generate brand
+$ bin/otrium report:generate brand --from=2018-01-12
 ```
 
 An argument must be provided when running the application. This is to determine what kind of report is to be generated.
+
+#### Parameters
+
+| Parameters      | Description                                | Example Value   |
+| --------------- | ------------------------------------------ | --------------- |
+| command         | Name of the command to be run              | report:generate |
+| name            | Name of report to be generated             | daily/brand     |
+| from (optional) | Date from which report should be generated | 2018-01-12      |
 
 > The generated report CSV files can be found within the `reports` directory.
 
