@@ -9,7 +9,7 @@
 
 ### Changed
 
-- Cleanup and refactor report generation classe
+- Cleanup and refactor report generation classes
 - Cleanup and refactor `GenerateReportCommand`
 - Updated documentation to show fake data import
 - Update documentation to show how to use `--from` date feature
